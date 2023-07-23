@@ -26,19 +26,23 @@
 
     <script>
         function getSuggestions() {
-            $('.loading').show()
             let keywords = $('#Keywords').val()
-            let data = { keywords }
-            $.ajax({
-                type: "POST",
-                url: "/autosuggestions",
-                data: data,
-                success: function (response) {
-                    $('.loading').hide()
-                    $('#doneResponse').html(`<h2 style="text-align: center;">Json File Genreated</h2>`)
-                    $('#Keywords').val('')
-                }
-            });
+            if (keywords === "") {
+                alert('Input cannot be empty')
+            } else {
+                $('.loading').show()
+                let data = { keywords }
+                $.ajax({
+                    type: "POST",
+                    url: "/autosuggestions",
+                    data: data,
+                    success: function (response) {
+                        $('.loading').hide()
+                        $('#doneResponse').html(`<h2 style="text-align: center;">Json File Genreated</h2>`)
+                        $('#Keywords').val('')
+                    }
+                });
+            }
         }
     </script>
     <style>

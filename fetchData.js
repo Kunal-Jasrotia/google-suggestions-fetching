@@ -16,7 +16,8 @@ let fetchData = async (keywords) => {
         await page.waitForSelector('#Alh6id > div.erkvQe > div > ul > li')
         //getting the list of suggestion
         let allSuggestions = await page.$$eval('#Alh6id > div.erkvQe > div > ul > li', res => res.map(e => {
-            return e.querySelector('div > div.pcTkSc > div.lnnVSe > div.wM6W7d > span').textContent
+            let Result = e.querySelector('div > div.pcTkSc > div.lnnVSe > div.wM6W7d span').textContent
+            return Result
         }))
         await new Promise(r => setTimeout(r, 1000))
         finalResult[element] = allSuggestions
